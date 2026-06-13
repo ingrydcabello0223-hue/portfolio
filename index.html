@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ingryd Cabello — Portfolio | Artist · Student · Dreamer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1a18;
+    --cream: #f0ebe0;
+    --forest: #1f3d2e;
+    --forest-light: #2d5240;
+    --gold: #d4a017;
+    --gold-warm: #e8b84b;
+    --coral: #c95b3a;
+    --sand: #e8dcc8;
+    --white: #faf8f4;
+    --muted: #6b6b5e;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 28px;
+    --radius-pill: 999px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  }
+
+  .navbar.scrolled {
+    background: rgba(31, 61, 46, 0.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .logo span { color: var(--gold-warm); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(250,248,244,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--ink) !important;
+    padding: 10px 24px;
+    border-radius: var(--radius-pill);
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold-warm) !important;
+    transform: translateY(-1px);
+    color: var(--ink) !important;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--forest);
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 120px;
+    gap: 32px;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(120px, 20vw, 220px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.07);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.03em;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+    top: -80px;
+    right: -80px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold-warm);
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-desc {
+    color: rgba(250,248,244,0.6);
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 320px;
+    font-weight: 300;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: clamp(200px, 22vw, 300px);
+    margin: 0 auto;
+  }
+
+  .hero-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(212,160,23,0.3);
+  }
+
+  .hero-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.4s;
+  }
+
+  .hero-photo:hover { filter: grayscale(0); }
+
+  .hero-socials {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .hero-socials a {
+    color: rgba(250,248,244,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .hero-socials a:hover { color: var(--gold-warm); }
+
+  .scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(250,248,244,0.35);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 40px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .scroll-indicator:hover { color: var(--gold-warm); }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(212,160,23,0.5), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.7); }
+  }
+
+  .ticker {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: ticker-scroll 22s linear infinite;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 32px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+
+  .ticker-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--forest);
+    opacity: 0.5;
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .about {
+    padding: 120px 48px;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.3;
+  }
+
+  .about-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  .about-heading em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .about-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-weight: 300;
+    max-width: 500px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--forest);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--forest-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary svg { transition: transform 0.2s; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  .profile-wrap {
+    position: relative;
+  }
+
+  .profile-img-box {
+    position: relative;
+    z-index: 2;
+  }
+
+  .profile-img-box img {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    display: block;
+  }
+
+  .profile-decor {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 70%;
+    height: 70%;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--sand);
+    z-index: 1;
+  }
+
+  .badge-float {
+    position: absolute;
+    z-index: 10;
+    background: var(--ink);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .badge-dob { top: 28px; left: -24px; background: var(--forest); color: var(--gold-warm);}
+  .badge-nat { bottom: 80px; right: -20px; background: var(--gold); color: var(--ink); }
+
+  .contact-card {
+    position: absolute;
+    bottom: -36px;
+    left: -20px;
+    background: var(--forest);
+    color: var(--white);
+    padding: 24px 28px;
+    border-radius: var(--radius-lg);
+    z-index: 10;
+    width: 280px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  .contact-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(250,248,244,0.75);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .contact-row:last-child { margin-bottom: 0; }
+
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+
+  .resume {
+    padding: 120px 48px;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .resume-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 40px;
+    line-height: 1.05;
+  }
+
+  .resume-heading em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: var(--sand);
+  }
+
+  .tl-item {
+    padding-left: 28px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--forest);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--forest);
+  }
+
+  .tl-year {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .tl-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .tl-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .exp-grid {
+    display: grid;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .exp-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--sand);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .exp-card:hover {
+    border-color: var(--forest);
+    transform: translateX(4px);
+  }
+
+  .exp-role { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .exp-year { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); }
+
+  .skills-section { margin-top: 60px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .skill-chip {
+    background: var(--forest);
+    color: var(--white);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .skill-chip:hover { background: var(--forest-light); }
+
+  .tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .tool-pill {
+    background: var(--sand);
+    color: var(--ink);
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .tool-pill:hover { background: var(--gold-warm); }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .tag {
+    border: 1px solid rgba(31,61,46,0.25);
+    color: var(--forest);
+    padding: 7px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .lang-item { display: flex; flex-direction: column; gap: 4px; }
+
+  .lang-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .lang-level {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .lang-bar {
+    width: 80px;
+    height: 3px;
+    background: var(--sand);
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+
+  .lang-bar-fill {
+    height: 100%;
+    background: var(--forest);
+    border-radius: 2px;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(250,248,244,0.5);
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+  }
+
+  footer .logo { font-size: 18px; }
+  footer span { opacity: 0.4; }
+
+  @media (max-width: 1024px) {
+    .navbar { padding: 20px 28px; }
+    .hero { padding: 0 28px 50px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo-wrap { width: 200px; margin: 0; order: -1; }
+    .hero-socials { text-align: left; flex-direction: row; flex-wrap: wrap; }
+    .about { padding: 80px 28px; grid-template-columns: 1fr; gap: 80px; }
+    .resume { padding: 80px 28px; grid-template-columns: 1fr; gap: 60px; }
+    .badge-dob { left: 0; }
+    .contact-card { bottom: -50px; left: 0; width: 100%; }
+    .profile-wrap { padding-bottom: 60px; }
+    footer { padding: 32px 28px; }
+  }
+
+  @media (max-width: 640px) {
+    .navbar { padding: 16px 20px; }
+    .nav-links { gap: 20px; }
+    .nav-links li:not(:last-child) { display: none; }
+    .hero { padding: 0 20px 40px; }
+    .hero-headline { font-size: clamp(40px, 12vw, 72px); }
+    .about { padding: 70px 20px; }
+    .resume { padding: 70px 20px; }
+    .lang-row { gap: 24px; }
+    footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+    .badge-nat { right: 0; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .ticker-inner { animation: none; }
+    .scroll-line { animation: none; }
+  }
+
+  .resume-btn-wrap {
+    margin-top: 28px;
+  }
+  .btn-outline-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--forest);
+    padding: 12px 28px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-gold:hover {
+    background: var(--gold);
+    color: var(--ink);
+    transform: translateY(-2px);
+    border-color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="logo">✦ Ingryd <span>Cabello</span></div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#">Creations</a></li>
+      <li><a href="mailto:ingrydcabello0223@gmail.com" class="nav-cta">Let's connect</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-bg-text" aria-hidden="true">ART & GRIT</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Multidisciplinary Creator · Future Dentist · Dreamer</div>
+    <h1 class="hero-headline">
+      Passion to<br>
+      <em>create</em>, thrive &<br>
+      inspire.
+    </h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc reveal">
+      Grade 11 student | Visual artist, musician & dancer. I pursue excellence with heart, aiming to become a dentist, professional artist, and musician — making my parents proud.
+    </p>
+    <div class="hero-photo-wrap reveal">
+      <img class="hero-photo" src="ingryd.png" alt="Ingryd Cabello portrait">
+    </div>
+    <div class="hero-socials reveal">
+      <a href="#">Instagram /gryd_dang</a>
+      <a href="#">Facebook /ingryd.cabello</a>
+      <a href="#">Behance /ingrydart</a>
+    </div>
+  </div>
+  <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" role="button" aria-label="Scroll to about section">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Visual Arts <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Music & Instruments <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Dancesport <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Web Foundations <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Academic Top <span class="ticker-dot"></span></span>
+    <span class="ticker-item">ATP Graduate <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Visual Arts <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Music & Instruments <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Dancesport <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Web Foundations <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Academic Top <span class="ticker-dot"></span></span>
+    <span class="ticker-item">ATP Graduate <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="section-label">About me</div>
+    <h2 class="about-heading reveal">
+      Dream big,<br>
+      <em>work with heart</em>.
+    </h2>
+    <p class="about-body reveal">
+      I'm Ingryd Cabello — 16, female, Filipino, and a devoted member of the Church of Christ. I live in Brgy. Simpatuyo Sitio Palagao, Sta. Teresita, Cagayan. As a Grade 11 student at Sta. Teresita National High School, I chase academic excellence (top of class), join Dancesport competitions, represent Bagwis Dance Troupe (BDT), and compete in Likhawitan, Sayawit, and other cultural events. I'm a visual artist (sketches, painting) and a multi-instrumentalist (guitar, piano, ukulele, bass). I completed the ATP program at Lyceum of Aparri (18 sessions: PowerPoint, Word, Excel, C++ logic, web foundations, HTML/CSS portfolio). Dentistry, art, and music are my future — I live to make my parents proud.
+    </p>
+    <a href="https://www.facebook.com/ingryd.cabello" class="btn-primary reveal" target="_blank">
+      Connect on Facebook
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+  <div class="about-right">
+    <div class="profile-wrap">
+      <div class="profile-img-box reveal">
+        <img src="dang.png" alt="Ingryd artist portrait" loading="lazy">
+        <div class="badge-float badge-dob">✨ 16 y/o · Female</div>
+        <div class="badge-float badge-nat">🇵🇭 Filipino · COC</div>
+        <div class="profile-decor" aria-hidden="true"></div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="contact-card-label">Connect & reach</div>
+        <div class="contact-row"><div class="contact-icon">📍</div> Brgy. Simpatuyo, Sta. Teresita, Cagayan</div>
+        <div class="contact-row"><div class="contact-icon">✉️</div> ingrydcabello0223@gmail.com</div>
+        <div class="contact-row"><div class="contact-icon">📞</div> 0915 648 5867 / 0954 489 5584</div>
+        <div class="contact-row"><div class="contact-icon">🎨</div> IG: gryd_dang · FB: Ingryd Cabello</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resume" id="resume">
+  <div class="left-col">
+    <div class="section-label">Journey & education</div>
+    <h2 class="resume-heading reveal">Learning &<br><em>milestones</em></h2>
+    <div class="timeline reveal">
+      <div class="tl-item"><div class="tl-year">2024 – Present</div><div class="tl-title">Grade 11 · Sta. Teresita NHS</div><div class="tl-sub">Academic honors · Dancesport · BDT member · Top of class</div></div>
+      <div class="tl-item"><div class="tl-year">2021 – 2024</div><div class="tl-title">Junior High School</div><div class="tl-sub">Sta. Teresita National High School · Graduated with excellence</div></div>
+      <div class="tl-item"><div class="tl-year">2015 – 2021</div><div class="tl-title">Elementary</div><div class="tl-sub">Saint Francis Academy · Foundation & creativity</div></div>
+    </div>
+
+    <div style="margin-top: 48px;" class="reveal">
+      <div class="section-label" style="margin-bottom:20px;">Auxiliary Tech Program & Achievements</div>
+      <div class="exp-grid">
+        <div class="exp-card"><div><div class="exp-role">ATP Graduate · Lyceum of Aparri</div><div class="exp-year">18 sessions · 2025</div></div><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5" stroke="#1f3d2e" stroke-width="1.5"/></svg></div>
+        <div class="exp-card"><div><div class="exp-role">Bagwis Dance Troupe (BDT) · Dancesport Athlete</div><div class="exp-year">Regional & inter-school comps</div></div><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5" stroke="#1f3d2e"/></svg></div>
+        <div class="exp-card"><div><div class="exp-role">Likhawitan · Sayawit · Cultural Champion</div><div class="exp-year">Visual & performance awards</div></div><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5" stroke="#1f3d2e"/></svg></div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">#AcademicExcellence</span>
+        <span class="tag">#FutureDentist</span>
+        <span class="tag">#Multipotentialite</span>
+        <span class="tag">#ParentalPride</span>
+        <span class="tag">#Resilience</span>
+      </div>
+
+      <!-- CANVA RESUME BUTTON added exactly as requested -->
+      <div class="resume-btn-wrap">
+        <a href="https://www.canva.com/design/DAHLyDB5kVQ/lJqOIG_AnhIaIDLarkFmdw/edit" target="_blank" class="btn-outline-gold" >
+          📄 See my resume
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="section-label">What I do</div>
+    <h2 class="resume-heading reveal"><em>Skills</em> &<br>creative tools</h2>
+    <div class="reveal">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Digital & tech tools</div>
+      <div class="tools-row">
+        <span class="tool-pill">HTML/CSS</span><span class="tool-pill">C++ Basics</span><span class="tool-pill">Figma</span>
+        <span class="tool-pill">PowerPoint</span><span class="tool-pill">Word/Excel</span><span class="tool-pill">Canva</span>
+      </div>
+    </div>
+    <div class="skills-section reveal">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Creative & artistic</div>
+      <div class="skills-grid">
+        <div class="skill-chip">Visual Arts</div><div class="skill-chip">Sketching/Painting</div>
+        <div class="skill-chip">Guitar/Piano</div><div class="skill-chip">Ukulele/Bass</div>
+        <div class="skill-chip">Dancesport</div><div class="skill-chip">Choreography</div>
+        <div class="skill-chip">Likha-witan</div><div class="skill-chip">Web Design</div>
+      </div>
+    </div>
+    <div style="margin-top: 52px;" class="reveal">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Languages</div>
+      <div class="lang-row">
+        <div class="lang-item"><span class="lang-name">Filipino/Tagalog</span><span class="lang-level">Native</span><div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div></div>
+        <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Fluent (academic)</span><div class="lang-bar"><div class="lang-bar-fill" style="width:90%"></div></div></div>
+        <div class="lang-item"><span class="lang-name">Ilocano</span><span class="lang-level">Conversational</span><div class="lang-bar"><div class="lang-bar-fill" style="width:75%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">✦ Ingryd <span>Cabello</span></div>
+  <span>© 2025 Ingryd Cabello — Dream, create, inspire.</span>
+  <span>🇵🇭 Grade 11 · Sta. Teresita, Cagayan</span>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
+  document.querySelectorAll('.hero .reveal').forEach(el => {
+    el.classList.add('visible');
+  });
+</script>
+</body>
+</html>
